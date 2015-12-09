@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+    xmlns:bootstrapthumbnail="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent" android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:layout_alignParentTop="true"
+
+    android:id="@+id/header">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:layout_marginBottom="1dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="#e4dbff"
+        android:id="@+id/info">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/link_b"
+            android:id="@+id/linkbrasil"
+            android:textSize="11dp"
+            android:textStyle="bold"
+            android:layout_marginRight="2dp" />
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#ffffff" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/link_acesso"
+            android:id="@+id/linkacesso"
+            android:textSize="11dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp" />
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#ffffff" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/link_participe"
+            android:id="@+id/linkparticipe"
+            android:textSize="11dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp" />
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#ffffff" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/link_serv"
+            android:id="@+id/linkservices"
+            android:textSize="11dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp" />
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#ffffff" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/link_legis"
+            android:id="@+id/linklegislation"
+            android:textSize="11dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp" />
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#ffffff" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/link_canais"
+            android:id="@+id/linkcanais"
+            android:textSize="11dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250px"
+        android:background="@drawable/roundedshape">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logo"
+            android:id="@+id/imageView"
+            android:layout_marginLeft="22dp"
+            android:layout_marginStart="22dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="Portal Mec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="40px"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/textView8"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_alignLeft="@+id/imageView"
+            android:layout_alignStart="@+id/imageView" />
+
+        <include layout="@layout/profile_header" />
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PortaMec"
+        android:background="#e4dbff"
+        android:id="@+id/menu">
+
+        <com.beardedhen.androidbootstrap.BootstrapButtonGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BootstrapButtonGroup"
+            android:orientation="horizontal"
+            app:bootstrapBrand="regular"
+            app:bootstrapSize="sm"
+            app:roundedCorners="false"
+            app:showOutline="true"
+
+            >
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coleções"
+                android:id="@+id/bt_main"
+                android:onClick="toMain" />
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/bt_mycollections"
+                android:text="Minhas Coleções"
+                android:textStyle=""
+                android:onClick="toMyCollections" />
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/bt_downloaded"
+                android:text="Coleções Baixadas"
+                android:textStyle=""
+                android:onClick="toSavedCollections" />
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/bt_about"
+                android:text="Sobre"
+                />
+        </com.beardedhen.androidbootstrap.BootstrapButtonGroup>
+
+    </LinearLayout>
+</LinearLayout>

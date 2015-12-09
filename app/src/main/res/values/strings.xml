@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">portalmec2</string>
+
+    <string name="link_b"><a href="http://www.brasil.gov.br/">BRASIL</a></string>
+    <string name="link_acesso"><a href="http://www.brasil.gov.br/barra#acesso-informacao">Acesso à informação</a></string>
+    <string name="link_participe"><a href="http://www.brasil.gov.br/barra#participe">Participe</a></string>
+    <string name="link_serv"><a href="http://www.servicos.gov.br/?pk_campaign=barrabrasil&amp;orgao=http://estruturaorganizacional.dados.gov.br/id/unidade-organizacional/1">Serviços</a></string>
+
+    <string name="link_legis"><a href="http://www.planalto.gov.br/legislacao">Legislação</a></string>
+    <string name="link_canais"><a href="http://www.brasil.gov.br/barra#orgaos-atuacao-canais">Canais</a></string>
+    <string name="title_activity_login">Login</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_saved_collections">Saved_collections</string>
+    <string name="title_activity_setup">Setup</string>
+    <string name="title_activity_base">BaseActivity</string>
+
+</resources>
