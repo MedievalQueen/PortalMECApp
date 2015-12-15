@@ -1,9 +1,7 @@
 package com.example.hednisk.portalmec2;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.View;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
@@ -14,7 +12,9 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        isLogged(false);
+        isLogged();
+
+        //   isLogged(false);
     //   LinearLayout bt_menu_ma=(LinearLayout)findViewById(R.id.header);
 //bt_menu_ma.is
         bt_menu_main=(BootstrapButton)findViewById(R.id.bt_main);
@@ -29,10 +29,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    public void login(View v){
-        Intent it=new Intent(this, Login.class);
-        startActivity(it);
-        finish();
-    }
+
 
 }

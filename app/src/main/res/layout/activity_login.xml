@@ -10,8 +10,7 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        >
+        android:layout_height="fill_parent">
 
         <LinearLayout
             android:id="@+id/llContainer"
@@ -25,22 +24,32 @@
                 android:layout_height="match_parent"/>
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/email"
                 android:text="email"
                 android:layout_alignBaseline="@+id/view"
                 android:layout_alignBottom="@+id/view"
                 android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp" />
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/pass"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:text="senha"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp" />
 
             <com.beardedhen.androidbootstrap.BootstrapButton
                 android:layout_width="wrap_content"
@@ -56,7 +65,14 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="130dp"
                 android:layout_gravity="center_horizontal"
-                android:onClick="logar" />
+                android:onClick="logar"
+                android:layout_marginTop="10dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/im"
+                android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:layout_width="120dp"

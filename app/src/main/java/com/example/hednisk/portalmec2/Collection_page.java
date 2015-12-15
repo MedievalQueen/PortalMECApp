@@ -1,5 +1,6 @@
 package com.example.hednisk.portalmec2;
 
+import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,18 +10,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,16 +22,17 @@ public class Collection_page extends BaseActivity {
     ListView list;
     TextView coll_n;
 
-    //temporario
+    //
     List<String> col=new ArrayList<String>();
     Integer[] imageId ={R.drawable.colecao, R.drawable.colecao};
+    List<String> img_links = new ArrayList<>();
     //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection_page);
-        isLogged(true);
+        isLogged();
 
         Button btDown=(Button)findViewById(R.id.btDownload);
         btDown.setOnClickListener(new View.OnClickListener() {
@@ -59,9 +52,7 @@ public class Collection_page extends BaseActivity {
 
         new ReadWeatherJSONFeedTask().execute(
                 "http://private-f95cb-portalm2.apiary-mock.com/objects");
-
-/*
-        ops=new Operations(this);
+/*        ops=new Operations(this);
         try {
             ops.open();
         } catch (SQLException e) {
@@ -71,7 +62,10 @@ public class Collection_page extends BaseActivity {
     }
     public void downloadCollection(View v){
         //get name and files of collection then insert, for now its just name
-        ops.downloadCollection(coll_n.getText().toString());
+        Collection coll= ops.downloadCollection(coll_n.getText().toString());
+       // if(coll.getId().) {
+            Toast.makeText(getBaseContext(), coll.getName(),Toast.LENGTH_SHORT).show();
+       // }
     }
 /*
     public void insertImage(Drawable dbDrawable, String imageId) {
@@ -87,33 +81,6 @@ public class Collection_page extends BaseActivity {
     }
 */
 
-
-    public String readJSONFeed(String URL) {
-        StringBuilder stringBuilder = new StringBuilder();
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpGet httpGet = new HttpGet(URL);
-        try {
-            HttpResponse response = httpClient.execute(httpGet);
-            StatusLine statusLine = response.getStatusLine();
-            int statusCode = statusLine.getStatusCode();
-            if (statusCode == 200) {
-                HttpEntity entity = response.getEntity();
-                InputStream inputStream = entity.getContent();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    stringBuilder.append(line);
-                }
-                inputStream.close();
-            } else {
-                Log.d("JSON", "Failed to download file");
-            }
-        } catch (Exception e) {
-            Log.d("readJSONFeed", e.getLocalizedMessage());
-        }
-        return stringBuilder.toString();
-    }
-
     private class ReadWeatherJSONFeedTask extends AsyncTask<String, Void, String> {
         protected String doInBackground(String... urls) {
             return readJSONFeed(urls[0]);
@@ -123,33 +90,24 @@ public class Collection_page extends BaseActivity {
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 JSONArray jsonAray = new JSONArray(jsonObject.getString("result"));
-                JSONObject jsonObj = jsonAray.getJSONObject(0);
-                col.add(jsonObj.getString("name"));
-               // col.add(jsonObj.getString("type"));
 
-                JSONArray bitstreams=new JSONArray(jsonObj.getString("bitstreams"));
-                JSONObject obj_bistr= bitstreams.getJSONObject(0);
-                obj_bistr.getString("link");
+                for (int i = 0; i < jsonAray.length(); i++) {
+                    JSONObject jsonObj = jsonAray.getJSONObject(i);
+                    col.add(jsonObj.getString("name"));
+                    // col.add(jsonObj.getString("type"));
 
-                Toast.makeText(getBaseContext(),
-                        jsonObj.getString("name"),
-                        Toast.LENGTH_SHORT).show();
+                    JSONArray bitstreams = new JSONArray(jsonObj.getString("bitstreams"));
+                    for (int j = 0; j < bitstreams.length(); j++) {
+                        JSONObject obj_bistr = bitstreams.getJSONObject(j);
+                        if (obj_bistr.getString("bundleName").equals("THUMBNAIL"))
+                            img_links.add("https://mecdb3.c3sl.ufpr.br:8443" + obj_bistr.getString("link"));
+                        //   new ImageLoadTask("http://images.clipartpanda.com/clipart-star-dcrpxazc9.jpeg", im).execute();
+                    }
+                }
 
-                ListCell adapter= new ListCell(Collection_page.this, col, imageId);
+                ListCellFile adapter= new ListCellFile(Collection_page.this, col, imageId, img_links);
                 list=(ListView)findViewById(R.id.list_files);
                 list.setAdapter(adapter);
-              /*  list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        TextView tv = (TextView) view.findViewById(R.id.txt);
-                        String title = tv.getText().toString();
-                        //go to collection page
-                        Intent it = new Intent(Collection_page.this, Collection_page.class);
-                        it.putExtra("title", title);
-                        startActivity(it);
-                        finish();
-                    }
-                });*/
 
             } catch (Exception e) {
                 Log.d("ReadWeatherJSONFeedTask", e.getLocalizedMessage());
@@ -157,5 +115,12 @@ public class Collection_page extends BaseActivity {
         }
     }
 
+    public void open(View v, String s){
+
+    }
+
+    public void download(View v){
+
+    }
 
 }

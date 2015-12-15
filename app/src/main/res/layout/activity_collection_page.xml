@@ -13,6 +13,7 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
+
         <LinearLayout
             android:id="@+id/llContainer"
             android:layout_width="fill_parent"
@@ -22,7 +23,9 @@
             <ViewStub
                 android:id="@+id/layout_stub"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,18 +74,20 @@
                     android:textSize="22dp"
                     android:paddingBottom="5dp"
                     android:padding="5dp"
-                    android:id="@+id/coll_name"/>
-
-
+                    android:id="@+id/coll_name"
+                    android:layout_marginBottom="15dp" />
 
                 <ListView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="391dp"
                     android:id="@+id/list_files"
                     android:layout_gravity="right" />
+
             </LinearLayout>
+            <include layout="@layout/footer" />
+
         </LinearLayout>
+
     </ScrollView>
 
-    <include layout="@layout/footer" />
 </RelativeLayout>
