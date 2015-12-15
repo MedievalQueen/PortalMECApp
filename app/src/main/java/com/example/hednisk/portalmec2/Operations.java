@@ -17,7 +17,7 @@ import java.util.List;
 public class Operations {
     private BDWrapper dbHelper;
     private String[] COLLECTION_TABLE_COLUMNS = {BDWrapper.COLLECTION_ID, BDWrapper.COLLECTION_NAME};//BDWrapper.COLLECTION_IMAGE
-   // private String[] FILES_TABLE_COLUMNS = {BDWrapper.FILE_ID, BDWrapper.FILE_NAME,BDWrapper.COLLECTION_ID};
+    private String[] FILE_TABLE_COLUMNS = {BDWrapper.FILE_ID, BDWrapper.FILE_NAME};
 
     private SQLiteDatabase database;
 
@@ -46,6 +46,23 @@ public class Operations {
         Collection coll=parseCollection(c);
         c.close();
         return coll;
+    }
+
+    //downloads selected file to smartphone
+    public File downloadFile(String name){
+        ContentValues values=new ContentValues();
+        values.put(BDWrapper.FILE_NAME, name);
+        //insert images
+        //values.put(BDWrapper.COLLECTION_IMAGE, );
+        long collId = database.insert(BDWrapper.FILES, null, values);
+
+        Cursor c= database.query(BDWrapper.FILES, FILE_TABLE_COLUMNS,
+                BDWrapper.FILE_ID + " = " + collId, null, null, null, null);
+
+        c.moveToFirst();
+        File fi=parseFile(c);
+        c.close();
+        return fi;
     }
 
     //will it be used??
@@ -86,12 +103,11 @@ public class Operations {
         coll.setName((c.getString(1)));
         return coll;
     }
-/*
-    private Collection parseFiles(Cursor c){
-        Collection coll=new Collection();
-        coll.setId((c.getInt(0)));
-        coll.setName((c.getString(1)));
-        return coll;
+
+    private File parseFile(Cursor c){
+        File fi=new File();
+        fi.setId((c.getInt(0)));
+        fi.setName((c.getString(1)));
+        return fi;
     }
-*/
 }

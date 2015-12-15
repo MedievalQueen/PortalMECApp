@@ -1,14 +1,12 @@
 package com.example.hednisk.portalmec2;
 
 import android.content.Intent;
-import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -39,11 +37,11 @@ public class User_collections extends BaseActivity {
 
         //pega todas coleções de usuário
        // List values=ops.getAllCollections();
-        new PortalMecJSONTask().execute(
+        new CollectionsJSONTask().execute(
                 "http://private-f95cb-portalm2.apiary-mock.com/collections");
     }
 
-    private class PortalMecJSONTask extends AsyncTask<String, Void, String> {
+    private class CollectionsJSONTask extends AsyncTask<String, Void, String> {
         protected String doInBackground(String... urls) {
             return readJSONFeed(urls[0]);
         }
@@ -61,7 +59,6 @@ public class User_collections extends BaseActivity {
                         JSONObject jsonO = files.getJSONObject(i);
                         filesIds.add(jsonO.toString());
                     }*/
-
                 }
                 ListCellCollection adapter= new ListCellCollection(User_collections.this, col, imageId, null);
                 list=(ListView)findViewById(R.id.list);
@@ -80,7 +77,7 @@ public class User_collections extends BaseActivity {
                 });
 
             } catch (Exception e) {
-                Log.d("PortalMecJSONTask", e.getLocalizedMessage());
+                Log.d("CollectionsJSONTask", e.getLocalizedMessage());
             }
         }
     }

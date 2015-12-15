@@ -1,6 +1,5 @@
 package com.example.hednisk.portalmec2;
 
-import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,6 +37,14 @@ public class Collection_page extends BaseActivity {
         btDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            /*      ops=new Operations(this);
+                    try {
+                        ops.open();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+            */
+
                 //saveIMG();
             }
         });
@@ -50,15 +57,8 @@ public class Collection_page extends BaseActivity {
         coll_n.setText("Arquivos da coleção " + title);
         //get files from webservice passing id of collection
 
-        new ReadWeatherJSONFeedTask().execute(
+        new ReadObjectsJSON().execute(
                 "http://private-f95cb-portalm2.apiary-mock.com/objects");
-/*        ops=new Operations(this);
-        try {
-            ops.open();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-*/
     }
     public void downloadCollection(View v){
         //get name and files of collection then insert, for now its just name
@@ -81,7 +81,7 @@ public class Collection_page extends BaseActivity {
     }
 */
 
-    private class ReadWeatherJSONFeedTask extends AsyncTask<String, Void, String> {
+    private class ReadObjectsJSON extends AsyncTask<String, Void, String> {
         protected String doInBackground(String... urls) {
             return readJSONFeed(urls[0]);
         }
@@ -110,7 +110,7 @@ public class Collection_page extends BaseActivity {
                 list.setAdapter(adapter);
 
             } catch (Exception e) {
-                Log.d("ReadWeatherJSONFeedTask", e.getLocalizedMessage());
+                Log.d("ReadObjectsJSON", e.getLocalizedMessage());
             }
         }
     }

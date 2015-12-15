@@ -47,7 +47,7 @@ public class ListCellFile extends ArrayAdapter<String> {
 
         Button open=(Button) rowView.findViewById(R.id.open);
 
-        Button downl=(Button) rowView.findViewById(R.id.download);//saves file in phone
+        Button downl=(Button) rowView.findViewById(R.id.btDownload);//saves file in phone
         downl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

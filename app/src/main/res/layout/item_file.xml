@@ -34,7 +34,7 @@ android:layout_height="wrap_content" android:layout_width="fill_parent">
         android:id="@+id/open"
         android:onClick="open"
         android:layout_below="@+id/subt"
-        android:layout_toLeftOf="@+id/download"
+        android:layout_toLeftOf="@+id/btDownload"
         android:layout_marginRight="15dp" />
 
     <Button
@@ -42,7 +42,7 @@ android:layout_height="wrap_content" android:layout_width="fill_parent">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Download"
-        android:id="@+id/download"
+        android:id="@+id/btDownload"
         android:onClick="download"
         android:layout_alignTop="@+id/open"
         android:layout_alignParentRight="true"
